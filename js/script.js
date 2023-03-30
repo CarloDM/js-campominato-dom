@@ -6,17 +6,19 @@
 
  */
 
+
 // ELEMENTI GLOBALI
-const difficolta = document.getElementById('level').value;
+
+let   difficolta = document.getElementById('level').value;
 const container  = document.getElementById('my_container');
 const btnStart   = document.getElementById('btnOne');
 const boxNumber  = 100;
-let   bombsL     = 3;
+let   bombsL     = lvBombs(difficolta);
 let   bombs      = [];
 let   punteggio  = 0;
 
-
-
+console.log(difficolta)
+console.log(bombsL)
 
 //  bottone start
 btnStart.addEventListener("click", function(){generatoreBoxs(container)});
@@ -26,11 +28,13 @@ btnStart.addEventListener("click", function(){generatoreBoxs(container)});
 function generatoreBoxs(container) {
   console.log('generatore box start!')
 
-  bombs = bombsGen();
+  bombs = bombsGen(bombsL);
   console.warn('bombs presenti',bombs)
+  //    svota messaggi
   message.innerHTML = ''
+  points.innerHTML = ''
   //    svuota container
-        container.innerHTML ='';
+  container.innerHTML ='';
   // ciclo d aggiunta dei div al container
     for (let i = 1; i < boxNumber + 1; i++) {  
     container.append(singleBox(i));
@@ -74,11 +78,11 @@ function clickBox(id,ths) {
 
 
 // -------------bombs generator-------------
-function bombsGen() {
+function bombsGen(len) {
   console.log('bombsGen start')
   let   arr      = [];
 //  generare un numero rando da 1 a 100, e verificare che non sia gia presente se si aggiungere se no generarne un altro finche l arrey leght è quello desiderato
-while (arr.length < bombsL) { 
+while (arr.length < len) { 
   R = Math.floor(Math.random()*100 + 1)
   if (arr.includes(R)){
   }else{
@@ -101,8 +105,8 @@ function freez() {
 // mostra punteggio
 
 function mostraPunteggio(p,winC) {
-  message = document.getElementById('points');
-  message.innerHTML = `punteggio ${p} su ${winC}`
+  punteggio = document.getElementById('points');
+  punteggio.innerHTML = `punteggio ${p} su ${winC}`
 }
 
 function winMessage() {
@@ -115,6 +119,18 @@ function looseMessage() {
   message.innerHTML = 'BOOMMM hai perso!!!'
 }
 
+// difficoltà cambia numero di bombe
+function lvBombs(lv) {
+number = 0;
+if (lv == 0){
+  number = 8;
+} else if (lv == 1){
+  number = 16;
+}else {
+  number = 32;
+}
+return number  
+}
 
 
 
