@@ -20,11 +20,20 @@ bombsGen()
 function bombsGen() {
   console.log('bombsGen start')
 //  aggiungere n alementi in array bombs
-  for (let i = 1; i < bombsL +1 ; i++) {
-    bombs.push(i);
-    console.log('bombsGen cicle' ,i)
-  }
+  // for (let i = 1; i < bombsL +1 ; i++) {
+  //   bombs.push(i);
+  // }
+//  generare un numero rando da 1 a 100, e verificare che non sia gia presente se si aggiungere se no generarne un altro finche l arrey leght è quello desiderato
+while (bombs.length < bombsL) {
+  
+  R = Math.floor(Math.random()*100 + 1)
+  if (bombs.includes(R)){
 
+  }else{
+    bombs.push(R);
+    console.log('aggiunto', R)
+  }
+}
   
   console.log('bombs', bombs)
   console.log('bombsGen and')
