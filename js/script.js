@@ -14,36 +14,6 @@ const boxNumber  = 100;
 let   bombs      = [];
 let   bombsL     = 6;
 
-// -------------bombs generator-------------
-
-bombsGen()
-function bombsGen() {
-  console.log('bombsGen start')
-//  aggiungere n alementi in array bombs
-  // for (let i = 1; i < bombsL +1 ; i++) {
-  //   bombs.push(i);
-  // }
-//  generare un numero rando da 1 a 100, e verificare che non sia gia presente se si aggiungere se no generarne un altro finche l arrey leght è quello desiderato
-while (bombs.length < bombsL) {
-  
-  R = Math.floor(Math.random()*100 + 1)
-  if (bombs.includes(R)){
-
-  }else{
-    bombs.push(R);
-    console.log('aggiunto', R)
-  }
-}
-  
-  console.log('bombs', bombs)
-  console.log('bombsGen and')
-}
-
-
-
-
-
-
 //  bottone start
 btnStart.addEventListener("click", function(){generatoreBoxs(container)});
 
@@ -51,6 +21,9 @@ btnStart.addEventListener("click", function(){generatoreBoxs(container)});
 // -------------- boxs generator-------------
 function generatoreBoxs(container) {
   console.log('generatore box start!')
+
+  bombsGen();
+
     //    svuota container
         container.innerHTML ='';
   // ciclo d aggiunta dei div al container
@@ -70,7 +43,6 @@ function singleBox(id) {
   return box;
 }
 
-// ---------- bomb array -----------
 
 // ---------- box click------------
 function clickBox(id,ths) {
@@ -80,18 +52,19 @@ function clickBox(id,ths) {
 }
 
 
-// CLICK CELLA
-//  verifico se è una bomba
-/**  si ---> fine gioco
+// -------------bombs generator-------------
+function bombsGen() {
+  console.log('bombsGen start')
+  let   bombs      = [];
+//  generare un numero rando da 1 a 100, e verificare che non sia gia presente se si aggiungere se no generarne un altro finche l arrey leght è quello desiderato
+while (bombs.length < bombsL) { 
+  R = Math.floor(Math.random()*100 + 1)
+  if (bombs.includes(R)){
+  }else{
+      bombs.push(R);
+  }
+}
+  console.log('bombs', bombs)
+  console.log('bombsGen and')
+}
 
-    no ---> aggiungo classe active alla celle
-            punteggio + 1 
-            verificare se punteggio ha raggiunto il massimo --> fine gioco
- */
-/*
-// FINE GIOCO
-- ACCENDERE TUTTE LE BOMBE
-- stampare msg con punteggio se vinci o perdi
-- congelo la griglia e l opacizzo
-
-*/
