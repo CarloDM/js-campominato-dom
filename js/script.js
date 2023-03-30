@@ -6,16 +6,34 @@
 
  */
 
-
-
-
-
 // ELEMENTI GLOBALI
 const difficolta = document.getElementById('level').value;
-const btnStart = document.getElementById('btnOne');
-const container = document.getElementById('my_container');
-let boxNumber = 100;
-let bombs = [];
+const container  = document.getElementById('my_container');
+const btnStart   = document.getElementById('btnOne');
+const boxNumber  = 100;
+let   bombs      = [];
+let   bombsL     = 6;
+
+// -------------bombs generator-------------
+
+bombsGen()
+function bombsGen() {
+  console.log('bombsGen start')
+//  aggiungere n alementi in array bombs
+  for (let i = 1; i < bombsL +1 ; i++) {
+    bombs.push(i);
+    console.log('bombsGen cicle' ,i)
+  }
+
+  
+  console.log('bombs', bombs)
+  console.log('bombsGen and')
+}
+
+
+
+
+
 
 //  bottone start
 btnStart.addEventListener("click", function(){generatoreBoxs(container)});
