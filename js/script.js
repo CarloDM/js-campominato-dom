@@ -15,10 +15,10 @@ let   bombsL     = 3;
 let   bombs      = [];
 let   punteggio  = 0;
 
+
+
 //  bottone start
 btnStart.addEventListener("click", function(){generatoreBoxs(container)});
-
-
 
 
 // -------------- boxs generator-------------
@@ -28,7 +28,7 @@ function generatoreBoxs(container) {
   bombs = bombsGen();
   console.warn('bombs presenti',bombs)
 
-    //    svuota container
+  //    svuota container
         container.innerHTML ='';
   // ciclo d aggiunta dei div al container
     for (let i = 1; i < boxNumber + 1; i++) {  
@@ -54,6 +54,7 @@ function clickBox(id,ths) {
   if (bombs.includes(id)){
     ths.classList.add('bomb')
     console.log('loose')
+    freez()
   }else{
     ths.classList.add('active')
     punteggio ++;
@@ -80,4 +81,17 @@ while (arr.length < bombsL) {
   console.log('bombsGen and')
   return arr
 }
+
+// evento di congelamento : aggiunge un div absolute al container
+freez()
+function freez() {
+  console.log('freez')
+  let freez = document.createElement('div');
+  freez.className = 'freez'
+  container.append(freez)
+}
+
+
+
+
 
