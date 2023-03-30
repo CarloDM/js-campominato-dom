@@ -11,12 +11,14 @@ const difficolta = document.getElementById('level').value;
 const container  = document.getElementById('my_container');
 const btnStart   = document.getElementById('btnOne');
 const boxNumber  = 100;
+let   bombsL     = 3;
 let   bombs      = [];
-let   arr      = [];
-let   bombsL     = 6;
+let   punteggio  = 0;
 
 //  bottone start
 btnStart.addEventListener("click", function(){generatoreBoxs(container)});
+
+
 
 
 // -------------- boxs generator-------------
@@ -49,15 +51,17 @@ function singleBox(id) {
 // ---------- box click------------
 function clickBox(id,ths) {
   console.log('box',id,'clicked')
-  console.log(bombs)
-  console.log(bombs.includes(id))
   if (bombs.includes(id)){
-    console.log('boommm')
+    ths.classList.add('bomb')
+    console.log('loose')
   }else{
     ths.classList.add('active')
+    punteggio ++;
+    
+      if ((punteggio) >= (boxNumber - bombsL)){
+          console.log('win')
+      }
   }
-
-  // ths.removeEventListener('click',function(){})
 }
 
 
@@ -72,7 +76,6 @@ while (arr.length < bombsL) {
   }else{
       arr.push(R);
   }
-
 }
   console.log('bombsGen and')
   return arr
