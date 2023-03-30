@@ -12,6 +12,7 @@ const container  = document.getElementById('my_container');
 const btnStart   = document.getElementById('btnOne');
 const boxNumber  = 100;
 let   bombs      = [];
+let   arr      = [];
 let   bombsL     = 6;
 
 //  bottone start
@@ -22,7 +23,8 @@ btnStart.addEventListener("click", function(){generatoreBoxs(container)});
 function generatoreBoxs(container) {
   console.log('generatore box start!')
 
-  bombsGen();
+  bombs = bombsGen();
+  console.warn('bombs presenti',bombs)
 
     //    svuota container
         container.innerHTML ='';
@@ -47,7 +49,14 @@ function singleBox(id) {
 // ---------- box click------------
 function clickBox(id,ths) {
   console.log('box',id,'clicked')
-  ths.classList.add('active')
+  console.log(bombs)
+  console.log(bombs.includes(id))
+  if (bombs.includes(id)){
+    console.log('boommm')
+  }else{
+    ths.classList.add('active')
+  }
+
   // ths.removeEventListener('click',function(){})
 }
 
@@ -55,16 +64,17 @@ function clickBox(id,ths) {
 // -------------bombs generator-------------
 function bombsGen() {
   console.log('bombsGen start')
-  let   bombs      = [];
+  let   arr      = [];
 //  generare un numero rando da 1 a 100, e verificare che non sia gia presente se si aggiungere se no generarne un altro finche l arrey leght è quello desiderato
-while (bombs.length < bombsL) { 
+while (arr.length < bombsL) { 
   R = Math.floor(Math.random()*100 + 1)
-  if (bombs.includes(R)){
+  if (arr.includes(R)){
   }else{
-      bombs.push(R);
+      arr.push(R);
   }
+
 }
-  console.log('bombs', bombs)
   console.log('bombsGen and')
+  return arr
 }
 
