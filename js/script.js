@@ -28,13 +28,17 @@ btnStart.addEventListener("click", function(){generatoreBoxs(container)});
 function generatoreBoxs(container) {
   console.log('generatore box start!')
 
-  bombs = bombsGen(bombsL);
+  difficolta = document.getElementById('level').value;
+  bombsL     = lvBombs(difficolta);
+  bombs      = bombsGen(bombsL);
   console.warn('bombs presenti',bombs)
+  
   //    svota messaggi
   message.innerHTML = ''
   points.innerHTML = ''
   //    svuota container
   container.innerHTML ='';
+  punteggio  = 0
   // ciclo d aggiunta dei div al container
     for (let i = 1; i < boxNumber + 1; i++) {  
     container.append(singleBox(i));
@@ -105,8 +109,8 @@ function freez() {
 // mostra punteggio
 
 function mostraPunteggio(p,winC) {
-  punteggio = document.getElementById('points');
-  punteggio.innerHTML = `punteggio ${p} su ${winC}`
+  punt = document.getElementById('points');
+  punt.innerHTML = `punteggio ${p} su ${winC}`
 }
 
 function winMessage() {
