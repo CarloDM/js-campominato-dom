@@ -17,6 +17,7 @@ let   punteggio  = 0;
 
 
 
+
 //  bottone start
 btnStart.addEventListener("click", function(){generatoreBoxs(container)});
 
@@ -27,7 +28,7 @@ function generatoreBoxs(container) {
 
   bombs = bombsGen();
   console.warn('bombs presenti',bombs)
-
+  message.innerHTML = ''
   //    svuota container
         container.innerHTML ='';
   // ciclo d aggiunta dei div al container
@@ -54,13 +55,19 @@ function clickBox(id,ths) {
   if (bombs.includes(id)){
     ths.classList.add('bomb')
     console.log('loose')
-    freez()
+    freez();
+    mostraPunteggio(punteggio,(boxNumber - bombsL));
+    looseMessage();
+    
   }else{
     ths.classList.add('active')
     punteggio ++;
     
       if ((punteggio) >= (boxNumber - bombsL)){
           console.log('win')
+          freez();
+          mostraPunteggio(punteggio,(boxNumber - bombsL));
+          winMessage();
       }
   }
 }
@@ -89,6 +96,23 @@ function freez() {
   let freez = document.createElement('div');
   freez.className = 'freez'
   container.append(freez)
+}
+
+// mostra punteggio
+
+function mostraPunteggio(p,winC) {
+  message = document.getElementById('points');
+  message.innerHTML = `punteggio ${p} su ${winC}`
+}
+
+function winMessage() {
+  message = document.getElementById('message');
+  message.innerHTML = 'hai vinto!!!'
+}
+
+function looseMessage() {
+  message = document.getElementById('message');
+  message.innerHTML = 'BOOMMM hai perso!!!'
 }
 
 
